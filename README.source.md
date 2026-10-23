@@ -1,22 +1,21 @@
-```aura width=860 height=300 link="https://github.com/rrddngtnn"
+```aura width=972 height=444 link="https://github.com/rrddngtnn"
 <div style={{
   width: '100%', height: '100%', background: '#06080d',
   display: 'flex', alignItems: 'center', fontFamily: 'Inter',
-  position: 'relative', overflow: 'hidden', borderRadius: 16,
-  border: '1px solid rgba(56,189,248,0.22)'
+  position: 'relative', overflow: 'hidden',
 }}>
-  <img src="./icons/bg-header.png" width={860} height={300}
+  <img src="./icons/bg-header.png" width={972} height={444}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
   <div style={{
-    position: 'absolute', left: 85, top: 62, width: 176, height: 176,
+    position: 'absolute', left: 100, top: 150, width: 176, height: 176,
     borderRadius: 88, background: 'linear-gradient(160deg, #38bdf8, #a78bfa)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   }}>
     <img src={github.user.avatarUrl} width={164} height={164} style={{ borderRadius: 82 }} />
   </div>
 
-  <div style={{ display:'flex', flexDirection:'column', marginLeft:309, marginTop:0, gap:10 }}>
+  <div style={{ display:'flex', flexDirection:'column', marginLeft:324, marginTop:88, gap:10 }}>
     <div style={{ display:'flex', fontSize:54, fontWeight:800, color:'#ffffff', letterSpacing:'-1.5px', lineHeight:1 }}>
       RED
     </div>
@@ -27,7 +26,7 @@
 </div>
 ```
 
-```aura width=860 height=172
+```aura width=972 height=316
 (function() {
   var n = github.stats.totalRepos;
   var stats = [
@@ -41,11 +40,11 @@
       width: '100%', height: '100%',
       background: '#06080d',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
-      fontFamily: 'Inter', borderRadius: 16,
-      border: '1px solid rgba(56,189,248,0.22)',
+      fontFamily: 'Inter',
       position: 'relative', overflow: 'hidden',
+      padding: '88px 56px 56px', boxSizing: 'border-box',
     }}>
-  <img src="./icons/bg-stats.png" width={860} height={172}
+  <img src="./icons/bg-stats.png" width={972} height={316}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
       {stats.map(function(s, i) {
@@ -71,7 +70,7 @@
 })()
 ```
 
-```aura width=860 height=228
+```aura width=972 height=372
 (function() {
   var topLangs = (github.languages || []).slice(0, 6).map(function(l) { return l.name; });
   if (topLangs.length === 0) topLangs = ['Shell', 'JavaScript', 'TypeScript'];
@@ -86,11 +85,10 @@
       width: '100%', height: '100%',
       background: '#06080d',
       display: 'flex', flexDirection: 'column',
-      fontFamily: 'Inter', padding: '28px 44px 28px', gap: 16,
-      borderRadius: 16, border: '1px solid rgba(56,189,248,0.22)',
+      fontFamily: 'Inter', padding: '116px 100px 84px', gap: 16,
       position: 'relative', overflow: 'hidden',
     }}>
-  <img src="./icons/bg-stack.png" width={860} height={228}
+  <img src="./icons/bg-stack.png" width={972} height={372}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
       <div style={{ display:'flex', fontSize:12, fontWeight:700, color:'rgba(180,205,232,0.75)', letterSpacing:'3.5px' }}>
