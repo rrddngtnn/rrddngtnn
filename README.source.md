@@ -18,13 +18,13 @@
 
   <div style={{ display:'flex', flexDirection:'column', marginLeft:186, marginTop:14, gap:8 }}>
     <div style={{ display:'flex', fontSize:38, fontWeight:800, color:'#ffffff', letterSpacing:'-1px', lineHeight:1 }}>
-      {github.user.name || github.user.login}
+      RED
     </div>
     <div style={{ display:'flex', fontSize:15, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.3px' }}>
-      {github.user.bio || 'Systems · Offensive Tooling · LLM Plumbing'}
+      Systems · Runtime Patching · LLM Infrastructure
     </div>
     <div style={{ display:'flex', gap:8, marginTop:6 }}>
-      {['Shell', 'Node.js', 'Reverse Engineering', 'LLM Tooling'].map(function(tag) {
+      {['Shell', 'TypeScript', 'JavaScript'].map(function(tag) {
         return (
           <div key={tag} style={{
             display:'flex', padding:'5px 13px', borderRadius:20,
@@ -42,8 +42,8 @@
 (function() {
   var n = github.stats.totalRepos;
   var stats = [
-    { label: n === 1 ? 'Repo' : 'Repos', value: String(n), color: '#ff6b8a' },
-    { label: 'Stars', value: String(github.stats.totalStars), color: '#f5b942' },
+    { label: n === 1 ? 'Public repo' : 'Public repos', value: String(n), color: '#ff6b8a' },
+    { label: 'Stars', value: String(github.stats.totalStars), color: '#e8d6d8' },
     { label: 'Commits', value: String(github.stats.totalCommits), color: '#ffb0a0' },
   ];
 
@@ -71,7 +71,7 @@
             <div style={{ display:'flex', fontSize:30, fontWeight:800, color:s.color, lineHeight:1 }}>
               {s.value}
             </div>
-            <div style={{ display:'flex', fontSize:11, color:'rgba(242,228,230,0.72)', fontWeight:600, letterSpacing:'1.5px' }}>
+            <div style={{ display:'flex', fontSize:11, color:'rgba(246,232,234,0.82)', fontWeight:600, letterSpacing:'1.4px' }}>
               {s.label.toUpperCase()}
             </div>
           </div>
@@ -87,9 +87,9 @@
   var topLangs = (github.languages || []).slice(0, 6).map(function(l) { return l.name; });
   if (topLangs.length === 0) topLangs = ['Shell', 'JavaScript', 'TypeScript'];
   var categories = [
-    { title: 'Languages', color: '#ff2d55', items: topLangs },
-    { title: 'Working in', color: '#f5b942', items: ['Node.js', 'Linux', 'LLM Routing', 'Binary Analysis'] },
-    { title: 'Daily drivers', color: '#ff9db0', items: ['nvim', 'tmux', 'git', 'gh', 'jq', 'ripgrep'] },
+    { title: 'Languages', color: '#ff2d55', items: ['Shell', 'TypeScript', 'JavaScript'] },
+    { title: 'Environment', color: '#f5b942', items: ['Linux', 'systemd', 'Node.js', 'Docker'] },
+    { title: 'Tooling', color: '#ff9db0', items: ['git', 'gh', 'ripgrep', 'jq', 'tmux', 'nvim'] },
   ];
 
   return (
@@ -105,13 +105,13 @@
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
       <div style={{ display:'flex', fontSize:10, fontWeight:700, color:'rgba(238,186,194,0.70)', letterSpacing:'3px' }}>
-        TECH STACK
+        STACK
       </div>
       <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
         {categories.map(function(cat) {
           return (
             <div key={cat.title} style={{ display:'flex', alignItems:'center', gap:16 }}>
-              <div style={{ display:'flex', fontSize:10, fontWeight:700, color:'rgba(236,218,220,0.58)', letterSpacing:'1.4px', width:127 }}>
+              <div style={{ display:'flex', fontSize:10, fontWeight:700, color:'rgba(244,226,230,0.72)', letterSpacing:'1.2px', width:127 }}>
                 {cat.title.toUpperCase()}
               </div>
               <div style={{ display:'flex', flexWrap:'wrap', gap:7 }}>
