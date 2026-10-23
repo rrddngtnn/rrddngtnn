@@ -23,17 +23,6 @@
     <div style={{ display:'flex', fontSize:15, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.3px' }}>
       Systems · Runtime Patching · LLM Infrastructure
     </div>
-    <div style={{ display:'flex', gap:8, marginTop:6 }}>
-      {['Shell', 'TypeScript', 'JavaScript'].map(function(tag) {
-        return (
-          <div key={tag} style={{
-            display:'flex', padding:'5px 13px', borderRadius:20,
-            background:'rgba(18,5,8,0.78)', border:'1px solid rgba(255,150,120,0.62)',
-            color:'rgba(250,240,240,0.96)', fontSize:12, fontWeight:600,
-          }}>{tag}</div>
-        );
-      })}
-    </div>
   </div>
 </div>
 ```

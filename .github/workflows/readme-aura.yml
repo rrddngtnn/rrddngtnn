@@ -5,13 +5,16 @@ on:
     branches: [main]
     paths:
       - 'README.source.md'
+      - 'icons/**'
       - '.github/workflows/readme-aura.yml'
-  schedule:
-    - cron: '0 6 * * 1'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: readme-generate
+  cancel-in-progress: true
 
 jobs:
   generate:
@@ -19,6 +22,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Generate README
         uses: collectioneur/readme-aura@main
@@ -29,4 +35,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_user: rrddngtnn
           auto_commit: 'true'
-          commit_message: 'chore(readme): regenerate profile card via readme-aura'
+          commit_message: 'chore(readme): regenerate cards from README.source.md'
