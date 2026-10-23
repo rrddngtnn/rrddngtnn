@@ -1,33 +1,33 @@
-```aura width=860 height=200 link="https://github.com/rrddngtnn"
+```aura width=860 height=240 link="https://github.com/rrddngtnn"
 <div style={{
   width: '100%', height: '100%', background: '#0a0608',
   display: 'flex', alignItems: 'center', fontFamily: 'Inter',
   position: 'relative', overflow: 'hidden', borderRadius: 16,
   border: '1px solid rgba(225,29,72,0.22)'
 }}>
-  <img src="./icons/bg-header.png" width={860} height={200}
+  <img src="./icons/bg-header.png" width={860} height={240}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
   <div style={{
-    position: 'absolute', left: 44, top: 52, width: 96, height: 96,
-    borderRadius: 48, background: 'linear-gradient(135deg, #e11d48, #f5b942)',
+    position: 'absolute', left: 44, top: 62, width: 116, height: 116,
+    borderRadius: 58, background: 'linear-gradient(135deg, #e11d48, #f5b942)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   }}>
-    <img src={github.user.avatarUrl} width={88} height={88} style={{ borderRadius: 44 }} />
+    <img src={github.user.avatarUrl} width={108} height={108} style={{ borderRadius: 54 }} />
   </div>
 
-  <div style={{ display:'flex', flexDirection:'column', marginLeft:186, marginTop:14, gap:8 }}>
-    <div style={{ display:'flex', fontSize:38, fontWeight:800, color:'#ffffff', letterSpacing:'-1px', lineHeight:1 }}>
+  <div style={{ display:'flex', flexDirection:'column', marginLeft:206, marginTop:18, gap:12 }}>
+    <div style={{ display:'flex', fontSize:54, fontWeight:800, color:'#ffffff', letterSpacing:'-1.5px', lineHeight:1, marginBottom:4 }}>
       RED
     </div>
-    <div style={{ display:'flex', fontSize:15, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.3px' }}>
+    <div style={{ display:'flex', fontSize:20, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.2px' }}>
       Systems · Runtime Patching · LLM Infrastructure
     </div>
   </div>
 </div>
 ```
 
-```aura width=860 height=140
+```aura width=860 height=172
 (function() {
   var n = github.stats.totalRepos;
   var stats = [
@@ -45,7 +45,7 @@
       border: '1px solid rgba(225,29,72,0.22)',
       position: 'relative', overflow: 'hidden',
     }}>
-  <img src="./icons/bg-stats.png" width={860} height={140}
+  <img src="./icons/bg-stats.png" width={860} height={172}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
       {stats.map(function(s, i) {
@@ -53,14 +53,14 @@
           <div key={s.label} style={{
             flexGrow: 1, alignSelf: 'stretch', display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
-            padding: '16px 8px',
+            padding: '18px 10px',
             borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
-            gap: 5,
+            gap: 8,
           }}>
-            <div style={{ display:'flex', fontSize:30, fontWeight:800, color:s.color, lineHeight:1 }}>
+            <div style={{ display:'flex', fontSize:46, fontWeight:800, color:s.color, lineHeight:1 }}>
               {s.value}
             </div>
-            <div style={{ display:'flex', fontSize:11, color:'rgba(246,232,234,0.82)', fontWeight:600, letterSpacing:'1.4px' }}>
+            <div style={{ display:'flex', fontSize:13, color:'rgba(246,232,234,0.82)', fontWeight:600, letterSpacing:'1.6px' }}>
               {s.label.toUpperCase()}
             </div>
           </div>
@@ -71,7 +71,7 @@
 })()
 ```
 
-```aura width=860 height=188
+```aura width=860 height=228
 (function() {
   var topLangs = (github.languages || []).slice(0, 6).map(function(l) { return l.name; });
   if (topLangs.length === 0) topLangs = ['Shell', 'JavaScript', 'TypeScript'];
@@ -86,30 +86,30 @@
       width: '100%', height: '100%',
       background: '#0a0608',
       display: 'flex', flexDirection: 'column',
-      fontFamily: 'Inter', padding: '26px 44px 26px', gap: 12,
+      fontFamily: 'Inter', padding: '28px 44px 28px', gap: 16,
       borderRadius: 16, border: '1px solid rgba(225,29,72,0.22)',
       position: 'relative', overflow: 'hidden',
     }}>
-  <img src="./icons/bg-stack.png" width={860} height={188}
+  <img src="./icons/bg-stack.png" width={860} height={228}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
-      <div style={{ display:'flex', fontSize:10, fontWeight:700, color:'rgba(238,186,194,0.70)', letterSpacing:'3px' }}>
+      <div style={{ display:'flex', fontSize:12, fontWeight:700, color:'rgba(238,186,194,0.75)', letterSpacing:'3.5px' }}>
         STACK
       </div>
-      <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
+      <div style={{ display:'flex', flexDirection:'column', gap:18 }}>
         {categories.map(function(cat) {
           return (
             <div key={cat.title} style={{ display:'flex', alignItems:'center', gap:16 }}>
-              <div style={{ display:'flex', fontSize:10, fontWeight:700, color:'rgba(244,226,230,0.72)', letterSpacing:'1.2px', width:127 }}>
+              <div style={{ display:'flex', fontSize:12, fontWeight:700, color:'rgba(244,226,230,0.76)', letterSpacing:'1.4px', width:152 }}>
                 {cat.title.toUpperCase()}
               </div>
-              <div style={{ display:'flex', flexWrap:'wrap', gap:7 }}>
+              <div style={{ display:'flex', flexWrap:'wrap', gap:9 }}>
                 {cat.items.map(function(item) {
                   return (
                     <div key={item} style={{
-                      display:'flex', padding:'6px 14px', borderRadius:20,
+                      display:'flex', padding:'8px 18px', borderRadius:22,
                       background:'rgba(18,5,8,0.74)', border:'1px solid rgba(255,150,120,0.50)',
-                      color:'rgba(250,240,240,0.96)', fontSize:12, fontWeight:600,
+                      color:'rgba(250,240,240,0.96)', fontSize:14, fontWeight:600,
                     }}>{item}</div>
                   );
                 })}
