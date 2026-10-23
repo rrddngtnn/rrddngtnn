@@ -1,26 +1,26 @@
-```aura width=860 height=240 link="https://github.com/rrddngtnn"
+```aura width=860 height=300 link="https://github.com/rrddngtnn"
 <div style={{
   width: '100%', height: '100%', background: '#0a0608',
   display: 'flex', alignItems: 'center', fontFamily: 'Inter',
   position: 'relative', overflow: 'hidden', borderRadius: 16,
   border: '1px solid rgba(225,29,72,0.22)'
 }}>
-  <img src="./icons/bg-header.png" width={860} height={240}
+  <img src="./icons/bg-header.png" width={860} height={300}
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
   <div style={{
-    position: 'absolute', left: 44, top: 62, width: 116, height: 116,
-    borderRadius: 58, background: 'linear-gradient(135deg, #e11d48, #f5b942)',
+    position: 'absolute', left: 85, top: 62, width: 176, height: 176,
+    borderRadius: 88, background: 'linear-gradient(160deg, #ff5c7a, #ffc65c)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   }}>
-    <img src={github.user.avatarUrl} width={108} height={108} style={{ borderRadius: 54 }} />
+    <img src={github.user.avatarUrl} width={164} height={164} style={{ borderRadius: 82 }} />
   </div>
 
-  <div style={{ display:'flex', flexDirection:'column', marginLeft:206, marginTop:18, gap:12 }}>
-    <div style={{ display:'flex', fontSize:54, fontWeight:800, color:'#ffffff', letterSpacing:'-1.5px', lineHeight:1, marginBottom:4 }}>
+  <div style={{ display:'flex', flexDirection:'column', marginLeft:309, marginTop:0, gap:10 }}>
+    <div style={{ display:'flex', fontSize:54, fontWeight:800, color:'#ffffff', letterSpacing:'-1.5px', lineHeight:1 }}>
       RED
     </div>
-    <div style={{ display:'flex', fontSize:20, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.2px' }}>
+    <div style={{ display:'flex', fontSize:20, color:'rgba(248,234,236,0.92)', fontWeight:400, letterSpacing:'0.2px', lineHeight:1.35 }}>
       Systems · Runtime Patching · LLM Infrastructure
     </div>
   </div>
