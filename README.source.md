@@ -9,14 +9,14 @@
        style={{ position: 'absolute', left: 0, top: 0, display: 'block' }} />
 
   <div style={{
-    position: 'absolute', left: 85, top: 62, width: 176, height: 176,
+    position: 'absolute', left: 48, top: 62, width: 176, height: 176,
     borderRadius: 88, background: 'linear-gradient(160deg, #38bdf8, #a78bfa)',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
   }}>
     <img src={github.user.avatarUrl} width={164} height={164} style={{ borderRadius: 82 }} />
   </div>
 
-  <div style={{ display:'flex', flexDirection:'column', marginLeft:309, marginTop:0, gap:10 }}>
+  <div style={{ display:'flex', flexDirection:'column', marginLeft:256, marginTop:0, gap:12 }}>
     <div style={{ display:'flex', fontSize:54, fontWeight:800, color:'#ffffff', letterSpacing:'-1.5px', lineHeight:1 }}>
       RED
     </div>
@@ -53,7 +53,7 @@
           <div key={s.label} style={{
             flexGrow: 1, alignSelf: 'stretch', display: 'flex', flexDirection: 'column',
             alignItems: 'center', justifyContent: 'center',
-            padding: '18px 10px',
+            padding: '20px 12px',
             borderRight: i < stats.length - 1 ? '1px solid rgba(255,255,255,0.08)' : 'none',
             gap: 8,
           }}>
@@ -85,8 +85,8 @@
     <div style={{
       width: '100%', height: '100%',
       background: '#06080d',
-      display: 'flex', flexDirection: 'column',
-      fontFamily: 'Inter', padding: '28px 44px 28px', gap: 16,
+      display: 'flex', flexDirection: 'column', justifyContent: 'center',
+      fontFamily: 'Inter', padding: '28px 48px', gap: 20,
       borderRadius: 16, border: '1px solid rgba(56,189,248,0.22)',
       position: 'relative', overflow: 'hidden',
     }}>
@@ -96,18 +96,18 @@
       <div style={{ display:'flex', fontSize:12, fontWeight:700, color:'rgba(180,205,232,0.75)', letterSpacing:'3.5px' }}>
         STACK
       </div>
-      <div style={{ display:'flex', flexDirection:'column', gap:18 }}>
+      <div style={{ display:'flex', flexDirection:'column', gap:20 }}>
         {categories.map(function(cat) {
           return (
-            <div key={cat.title} style={{ display:'flex', alignItems:'center', gap:16 }}>
+            <div key={cat.title} style={{ display:'flex', alignItems:'center', gap:24 }}>
               <div style={{ display:'flex', fontSize:12, fontWeight:700, color:'rgba(196,216,240,0.76)', letterSpacing:'1.4px', width:152 }}>
                 {cat.title.toUpperCase()}
               </div>
-              <div style={{ display:'flex', flexWrap:'wrap', gap:9 }}>
+              <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
                 {cat.items.map(function(item) {
                   return (
                     <div key={item} style={{
-                      display:'flex', padding:'8px 18px', borderRadius:22,
+                      display:'flex', padding:'8px 16px', borderRadius:22,
                       background:'rgba(10,16,28,0.74)', border:'1px solid rgba(120,190,240,0.42)',
                       color:'rgba(230,242,252,0.96)', fontSize:14, fontWeight:600,
                     }}>{item}</div>
