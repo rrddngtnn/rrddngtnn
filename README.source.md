@@ -21,7 +21,7 @@
       RED
     </div>
     <div style={{ display:'flex', fontSize:20, color:'rgba(226,236,248,0.92)', fontWeight:400, letterSpacing:'0.2px', lineHeight:1.35 }}>
-      Systems · Runtime Patching · LLM Infrastructure
+      LLM Infrastructure · Developer Tooling
     </div>
   </div>
 </div>
@@ -33,7 +33,7 @@
   var stats = [
     { label: n === 1 ? 'Public repo' : 'Public repos', value: String(n), color: '#38bdf8' },
     { label: 'Stars', value: String(github.stats.totalStars), color: '#8fa3bd' },
-    { label: 'Commits', value: String(github.stats.totalCommits), color: '#a78bfa' },
+    { label: 'Repo commits', value: String(github.stats.totalCommits), color: '#a78bfa' },
   ];
 
   return (
@@ -73,12 +73,10 @@
 
 ```aura width=860 height=228
 (function() {
-  var topLangs = (github.languages || []).slice(0, 6).map(function(l) { return l.name; });
-  if (topLangs.length === 0) topLangs = ['Shell', 'JavaScript', 'TypeScript'];
   var categories = [
-    { title: 'Languages', color: '#38bdf8', items: ['Shell', 'TypeScript', 'JavaScript'] },
-    { title: 'Environment', color: '#a78bfa', items: ['Linux', 'systemd', 'Node.js', 'Docker'] },
-    { title: 'Tooling', color: '#22d3ee', items: ['git', 'gh', 'ripgrep', 'jq', 'tmux', 'nvim'] },
+    { title: 'Languages', color: '#38bdf8', items: ['Python', 'JavaScript', 'Shell'] },
+    { title: 'Environment', color: '#a78bfa', items: ['Linux', 'systemd', 'Node.js', 'SQLite'] },
+    { title: 'Tooling', color: '#22d3ee', items: ['pytest', 'node:test', 'ShellCheck', 'Actions'] },
   ];
 
   return (
