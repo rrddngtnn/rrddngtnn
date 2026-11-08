@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-<a href="https://github.com/rrddngtnn/styxrouter"><img src="https://img.shields.io/badge/StyxRouter-AI%20gateway-eab66a?style=flat-square&amp;labelColor=19252f" alt="StyxRouter AI gateway" /></a> <a href="https://github.com/rrddngtnn/rrddngtnn"><img src="https://img.shields.io/badge/profile%20repo-system%20README-58b6a6?style=flat-square&amp;logo=github&amp;labelColor=19252f" alt="Profile repository" /></a> <a href="https://github.com/rrddngtnn/s0ulctl"><img src="https://img.shields.io/badge/s0ulctl-prompt%20CLI-f3dfb3?style=flat-square&amp;labelColor=19252f" alt="s0ulctl prompt CLI" /></a>
+<a href="https://github.com/rrddngtnn/styxrouter"><img src="./icons/badge-0.svg" alt="StyxRouter AI gateway" /></a> <a href="https://github.com/rrddngtnn/rrddngtnn"><img src="./icons/badge-1.svg" alt="Profile repository" /></a> <a href="https://github.com/rrddngtnn/s0ulctl"><img src="./icons/badge-2.svg" alt="s0ulctl prompt CLI" /></a>
 </p>
 
 <p align="center">
@@ -112,9 +112,9 @@
 Project conversations around:<ul><li>AI model gateway integrations</li><li>Command-line tooling</li><li>Prompt configuration</li><li>Python automation utilities</li></ul></td>
 <td width="34%" align="center" valign="middle"><a href="https://github.com/rrddngtnn/styxrouter/issues"><img src="./icons/collaboration.svg" width="200" alt="collaboration" /></a></td>
 <td width="33%" valign="top" align="center"><h2>📫 Contact</h2><br>
-<a href="https://github.com/rrddngtnn"><img src="https://img.shields.io/badge/GitHub-rrddngtnn-eab66a?style=for-the-badge&amp;logo=github&amp;labelColor=19252f" alt="GitHub" /></a><br><br>
-<a href="https://github.com/rrddngtnn/styxrouter/issues"><img src="https://img.shields.io/badge/StyxRouter%20issues-rrddngtnn-58b6a6?style=for-the-badge&amp;logo=github&amp;labelColor=19252f" alt="StyxRouter issues" /></a><br><br>
-<a href="https://github.com/rrddngtnn/s0ulctl/issues"><img src="https://img.shields.io/badge/s0ulctl%20issues-rrddngtnn-f3dfb3?style=for-the-badge&amp;logo=github&amp;labelColor=19252f" alt="s0ulctl issues" /></a><br><br>
+<a href="https://github.com/rrddngtnn"><img src="./icons/badge-3.svg" alt="GitHub" /></a><br><br>
+<a href="https://github.com/rrddngtnn/styxrouter/issues"><img src="./icons/badge-4.svg" alt="StyxRouter issues" /></a><br><br>
+<a href="https://github.com/rrddngtnn/s0ulctl/issues"><img src="./icons/badge-5.svg" alt="s0ulctl issues" /></a><br><br>
 </td></tr></table>
 
 <p align="center">
@@ -140,4 +140,3 @@ Star ⭐ the repos if they helped you!
 <p align="center">
 <img src="./icons/footer.svg" width="100%" alt="footer" />
 </p>
-
