@@ -9,6 +9,13 @@ import sys
 def main():
     if not os.environ.get("GITHUB_TOKEN"):
         raise SystemExit("GITHUB_TOKEN is required; refusing mock-data generation")
+    source = Path("README.source.md").read_text()
+    if not re.search(r"^```aura\b", source, re.M):
+        Path("README.md").write_text(source)
+        for asset in Path(".github/assets").glob("*.svg"):
+            asset.unlink()
+        print("Static profile published; no statistics cards requested.")
+        return
     result = subprocess.run(
         ["npx", "--yes", "readme-aura@1.0.20", "build", "--source", "README.source.md",
          "--output", "README.md", "--assets", ".github/assets", "--github-user", "rrddngtnn"],

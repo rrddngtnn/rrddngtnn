@@ -8,9 +8,10 @@ import unittest
 class ProfileTests(unittest.TestCase):
     def test_reference_section_order(self):
         source = Path('README.source.md').read_text()
-        markers = ['header.svg', 'control.svg', 'access.svg', 'portal.svg', 'gateway.svg', 'core.svg', 'Technologies, Projects, and Domains', 'Vital Statistics', 'Collaboration', 'footer.svg']
-        positions = [source.index(m) for m in markers]
-        self.assertEqual(positions, sorted(positions))
+        self.assertIn('header.svg', source)
+        self.assertIn('Raymond REDdington', source)
+        for removed in ['control.svg', 'Vital Statistics', 'Collaboration', 'badge-0.svg']:
+            self.assertNotIn(removed, source)
 
     def test_api_failure_fail_closed(self):
         import tempfile
@@ -19,7 +20,9 @@ class ProfileTests(unittest.TestCase):
             fake.write_text('#!/bin/sh\nprintf "GitHub API failed; using mock data\\n"\nexit 0\n')
             fake.chmod(0o755)
             env = dict(os.environ, GITHUB_TOKEN='test-not-a-real-token', PATH=folder + os.pathsep + os.environ['PATH'])
-            result = subprocess.run([sys.executable, 'scripts/generate_readme.py'], env=env, capture_output=True, text=True)
+            script = Path('scripts/generate_readme.py').resolve()
+            (Path(folder) / 'README.source.md').write_text('```aura width=100 height=100\n<div>test</div>\n```\n')
+            result = subprocess.run([sys.executable, str(script)], cwd=folder, env=env, capture_output=True, text=True)
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('Refusing to publish', result.stderr)
 
