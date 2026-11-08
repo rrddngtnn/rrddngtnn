@@ -1,42 +1,43 @@
-"""Generate profile cards with live public GitHub data; never publish mock stats."""
+"""Generate only from authenticated GitHub data; CI is the output writer."""
+import argparse
+import hashlib
 import os
 from pathlib import Path
-import re
-import subprocess
-import sys
+import profile_stats
 
 
 def main():
-    if not os.environ.get("GITHUB_TOKEN"):
-        raise SystemExit("GITHUB_TOKEN is required; refusing mock-data generation")
-    source = Path("README.source.md").read_text()
-    if not re.search(r"^```aura\b", source, re.M):
-        Path("README.md").write_text(source)
-        for asset in Path(".github/assets").glob("*.svg"):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output-dir', type=Path, default=Path('.'))
+    args = parser.parse_args()
+    if not os.environ.get('GITHUB_TOKEN'):
+        raise SystemExit('GITHUB_TOKEN is required; refusing mock-data generation')
+    source = Path('README.source.md').read_text()
+    marker = '<!-- github-stats -->'
+    if source.count(marker) != 1:
+        raise ValueError('Source must contain exactly one statistics marker')
+    # Finish every API read and validation before writing anything.
+    data = profile_stats.fetch()
+    cards = profile_stats.render(data)
+    paths = {name: f'.github/assets/{name}-{hashlib.sha256(svg.encode()).hexdigest()[:12]}.svg'
+             for name, svg in cards.items()}
+    markup = ('<p align="center">\n'
+              f'<img src="./{paths["stats"]}" width="48%" alt="GitHub Stats: personal contributions in the displayed calendar window" />\n'
+              f'<img src="./{paths["languages"]}" width="48%" alt="Top Languages by code bytes in owned public non-fork repositories" />\n'
+              '</p>\n<p align="center">\n'
+              f'<img src="./{paths["activity"]}" width="100%" alt="Contribution Activity: daily GitHub contribution calendar" />\n'
+              '</p>')
+    output = args.output_dir
+    assets = output/'.github/assets'
+    assets.mkdir(parents=True, exist_ok=True)
+    for name, svg in cards.items():
+        (output/paths[name]).write_text(svg)
+    (output/'README.md').write_text(source.replace(marker, markup))
+    for asset in assets.glob('*.svg'):
+        if str(asset.relative_to(output)) not in paths.values():
             asset.unlink()
-        print("Static profile published; no statistics cards requested.")
-        return
-    result = subprocess.run(
-        ["npx", "--yes", "readme-aura@1.0.20", "build", "--source", "README.source.md",
-         "--output", "README.md", "--assets", ".github/assets", "--github-user", "rrddngtnn"],
-        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, check=False,
-    )
-    print(result.stdout, end="")
-    if result.returncode:
-        raise SystemExit(result.returncode)
-    # readme-aura exits successfully even when the API fails and it renders mocks.
-    if re.search(r"mock (?:repo )?data|GitHub API failed|Repo API failed", result.stdout, re.I):
-        raise SystemExit("Refusing to publish: GitHub data fetch failed or mock data was used")
-    if "Fetched:" not in result.stdout or "Fetched repo:" not in result.stdout:
-        raise SystemExit("Missing confirmation of live GitHub data")
-    readme = Path("README.md").read_text()
-    refs = set(re.findall(r"\.github/assets/[\w.-]+\.svg", readme))
-    assets = {str(p) for p in Path(".github/assets").glob("*.svg")}
-    expected = len(re.findall(r"^```aura\b", Path("README.source.md").read_text(), re.M))
-    if not refs or refs != assets or len(refs) != expected:
-        raise SystemExit("Generated SVG references are missing, orphaned, or incomplete")
-    print(f"Validated {len(refs)} generated cards using live public GitHub data.")
+    print('Validated and generated 3 cards from live GitHub GraphQL data.')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
