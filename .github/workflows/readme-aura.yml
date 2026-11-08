@@ -9,7 +9,7 @@ on:
     paths:
       - 'README.source.md'
       - 'icons/**'
-      - 'scripts/generate_readme.py'
+      - 'scripts/**'
       - '.github/workflows/readme-aura.yml'
   workflow_dispatch:
 
@@ -36,6 +36,9 @@ jobs:
         uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
         with:
           node-version: '24'
+
+      - name: Verify fail-closed guards and source layout
+        run: python3 scripts/test_profile.py
 
       - name: Generate and validate cards with live public data
         env:
