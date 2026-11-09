@@ -34,7 +34,7 @@ class ProfileTests(unittest.TestCase):
 
     def test_workflow_uses_official_fail_closed_action(self):
         workflow = Path('.github/workflows/readme-aura.yml').read_text()
-        self.assertEqual(workflow.count('uses: stats-organization/github-readme-stats-action@'), 2)
+        self.assertEqual(workflow.count('uses: ./.upstream-grs-action'), 2)
         self.assertEqual(workflow.count("fail_on_error: 'true'"), 2)
         self.assertIn('layout=compact', workflow)
         self.assertIn('username=rrddngtnn', workflow)

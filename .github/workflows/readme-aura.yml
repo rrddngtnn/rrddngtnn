@@ -32,11 +32,21 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      # Resolve the official composite action locally: GitHub's remote composite
+      # expansion returned an internal server error before starting any job.
+      - name: Checkout official generator
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          repository: stats-organization/github-readme-stats-action
+          ref: 2c498845f71017821efaad14293ebc736156ef21
+          path: .upstream-grs-action
+          persist-credentials: false
+
       - name: Verify source layout and publication guards
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
 
       - name: Generate standard stats card
-        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        uses: ./.upstream-grs-action
         with:
           card: stats
           options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&show_icons=true
@@ -46,7 +56,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate standard top-langs card
-        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        uses: ./.upstream-grs-action
         with:
           card: top-langs
           options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&layout=compact&langs_count=6
