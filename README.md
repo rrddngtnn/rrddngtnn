@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-<img src="./.github/assets/stats-22c09addd8e7.svg" width="48%" alt="GitHub Stats: personal contributions in the displayed calendar window" />
+<img src="./.github/assets/stats-268c38377310.svg" width="48%" alt="GitHub Stats: personal contributions in the displayed calendar window" />
 <img src="./.github/assets/languages-e9c0ba1e6e70.svg" width="48%" alt="Top Languages by code bytes in owned public non-fork repositories" />
 </p>
 <p align="center">
-<img src="./.github/assets/activity-afd6142608f1.svg" width="100%" alt="Contribution Activity: daily GitHub contribution calendar" />
+<img src="./.github/assets/activity-9cf93f903ea6.svg" width="100%" alt="Contribution Activity: daily GitHub contribution calendar" />
 </p>
