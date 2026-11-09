@@ -1,82 +1,48 @@
 name: Generate README
-
 on:
   schedule:
-    # Daily at 03:17 UTC (10:17 WIB); GitHub may delay scheduled jobs.
+    # Daily 03:17 UTC; scheduled runs can be delayed by GitHub.
     - cron: '17 3 * * *'
   push:
     branches: [main]
-    paths:
-      - 'README.source.md'
-      - 'icons/**'
-      - 'scripts/**'
-      - '.github/workflows/readme-aura.yml'
+    paths: ['README.source.md', 'icons/**', 'scripts/**', '.github/workflows/readme-aura.yml']
   workflow_dispatch:
-
 permissions:
   contents: write
-
 concurrency:
   group: readme-generate
   cancel-in-progress: false
-
 jobs:
   generate:
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Checkout latest source
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: main
           fetch-depth: 0
-
-      # Resolve the official composite action locally: GitHub's remote composite
-      # expansion returned an internal server error before starting any job.
-      - name: Checkout official generator
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - name: Set up PHP for official streak generator
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
-          repository: stats-organization/github-readme-stats-action
-          ref: 2c498845f71017821efaad14293ebc736156ef21
-          path: .upstream-grs-action
-          persist-credentials: false
-
+          php-version: '8.3'
+          extensions: intl, curl
+          tools: composer:2
+          coverage: none
       - name: Verify source layout and publication guards
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
-
-      - name: Generate standard stats card
-        uses: ./.upstream-grs-action
-        with:
-          card: stats
-          options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&show_icons=true
-          path: .github/assets/stats.svg
-          core_version: '2.3.0'
-          fail_on_error: 'true'
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate standard top-langs card
-        uses: ./.upstream-grs-action
-        with:
-          card: top-langs
-          options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&layout=compact&langs_count=6
-          path: .github/assets/top-langs.svg
-          core_version: '2.3.0'
-          fail_on_error: 'true'
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Validate cards and publish source
-        run: python3 scripts/generate_readme.py
-
-      - name: Commit generated output only
+      # Invoke upstream entry points directly, avoiding remote nested-composite
+      # expansion (GitHub previously failed before allocating any job).
+      - name: Generate official cards with authenticated GitHub data
+        run: bash scripts/generate_upstream.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit validated generated output only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add README.md .github/assets
-          if git diff --cached --quiet; then
-            printf 'Cards are already up to date.\n'
-            exit 0
-          fi
-          git commit -m 'chore(readme): refresh standard GitHub Readme Stats cards'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(readme): refresh standard profile cards'
           git pull --rebase origin main
           git push origin HEAD:main

@@ -12,9 +12,28 @@
 <samp>「 Building AI model gateways, command-line tools, and automation 」</samp>
 </p>
 
+## Stats
+
 <p align="center">
-<img src="./.github/assets/stats.svg" width="48%" alt="GitHub Stats" />
-<img src="./.github/assets/top-langs.svg" width="48%" alt="Most Used Languages" />
+<img src="./.github/assets/stats.svg" width="495" alt="GitHub Stats" />
+</p>
+
+## Languages
+
+<p align="center">
+<img src="./.github/assets/top-langs.svg" width="400" alt="Most Used Languages" />
+</p>
+
+## Streak
+
+<p align="center">
+<img src="./.github/assets/streak.svg" width="495" alt="GitHub contribution streak" />
+</p>
+
+## Achievements
+
+<p align="center">
+<img src="./.github/assets/trophies.svg" width="100%" alt="GitHub Profile Trophy" />
 </p>
 
 <p align="center">

@@ -15,9 +15,13 @@ class ProfileTests(unittest.TestCase):
         source = Path('README.source.md').read_text()
         self.assertLess(source.index('header.svg'), source.index('stats.svg'))
         self.assertLess(source.index('stats.svg'), source.index('top-langs.svg'))
-        self.assertLess(source.index('top-langs.svg'), source.index('footer.svg'))
+        self.assertLess(source.index('top-langs.svg'), source.index('streak.svg'))
+        self.assertLess(source.index('streak.svg'), source.index('trophies.svg'))
+        self.assertLess(source.index('trophies.svg'), source.index('footer.svg'))
+        for heading in ['Stats', 'Languages', 'Streak', 'Achievements']:
+            self.assertIn('## '+heading, source)
         self.assertIn('Raymond REDdington', source)
-        for removed in ['github-stats -->', 'activity-', 'streak', '```aura']:
+        for removed in ['github-stats -->', 'activity-', '```aura']:
             self.assertNotIn(removed, source)
 
     def test_invalid_cards_preserve_published_readme(self):
@@ -34,10 +38,13 @@ class ProfileTests(unittest.TestCase):
 
     def test_workflow_uses_official_fail_closed_action(self):
         workflow = Path('.github/workflows/readme-aura.yml').read_text()
-        self.assertEqual(workflow.count('uses: ./.upstream-grs-action'), 2)
-        self.assertEqual(workflow.count("fail_on_error: 'true'"), 2)
-        self.assertIn('layout=compact', workflow)
-        self.assertIn('username=rrddngtnn', workflow)
+        generator = Path('scripts/generate_upstream.sh').read_text()
+        self.assertIn('INPUT_FAIL_ON_ERROR=true', generator)
+        self.assertIn('layout=compact', generator)
+        self.assertIn('username=rrddngtnn', generator)
+        self.assertIn('render_svg.ts', generator)
+        self.assertIn('bin/generate-card.php', generator)
+        self.assertIn('scripts/generate_upstream.sh', workflow)
         self.assertNotIn('profile_stats', workflow)
 
 
