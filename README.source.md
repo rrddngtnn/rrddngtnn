@@ -13,3 +13,7 @@
 </p>
 
 <!-- github-stats -->
+
+<p align="center">
+<img src="./icons/footer.svg" width="100%" alt="Footer wave" />
+</p>
