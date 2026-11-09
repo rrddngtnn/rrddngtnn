@@ -13,11 +13,8 @@
 </p>
 
 <p align="center">
-<img src="./.github/assets/stats-c31c119d02c1.svg" width="48%" alt="GitHub Stats: personal contributions in the displayed calendar window" />
-<img src="./.github/assets/languages-935dc6df8f97.svg" width="48%" alt="Top Languages by code bytes in owned public non-fork repositories" />
-</p>
-<p align="center">
-<img src="./.github/assets/activity-87de0317cdaf.svg" width="100%" alt="Contribution Activity: daily GitHub contribution calendar" />
+<img src="./.github/assets/stats.svg" width="48%" alt="GitHub Stats" />
+<img src="./.github/assets/top-langs.svg" width="48%" alt="Most Used Languages" />
 </p>
 
 <p align="center">
