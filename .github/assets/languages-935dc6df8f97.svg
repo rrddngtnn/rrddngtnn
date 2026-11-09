@@ -2,12 +2,12 @@
  viewBox="0 0 530 280" role="img" aria-label="Top Languages">
 <title>Top Languages</title><style>
 svg { font-family: DejaVu Sans,Segoe UI,Arial,sans-serif; }
-.bg { fill:#fff; stroke:#e5cbd0; } .label { fill:#65434b; }
-.title { fill:#813d4b; font-weight:600; } .value { fill:#813d4b; font-weight:600; }
-.rose { fill:#a13e51; } .lavender { fill:#965564; } .empty { fill:#f3e7ea; }
+.bg { fill:#fff; stroke:#c3dce8; } .label { fill:#38596b; }
+.title { fill:#205b78; font-weight:600; } .value { fill:#205b78; font-weight:600; }
+.rose { fill:#126b8c; } .lavender { fill:#39758d; } .empty { fill:#e6f1f6; }
 @media(prefers-color-scheme:dark) {
-.bg { fill:#1b1016; stroke:#54303b; } .label { fill:#d6bac3; }
-.title,.value { fill:#edb4bd; } .rose { fill:#d46a78; }
-.lavender { fill:#e7a4ad; } .empty { fill:#35202a; } }
+.bg { fill:#0c1e2b; stroke:#294e64; } .label { fill:#b8d4e3; }
+.title,.value { fill:#b7edff; } .rose { fill:#83d9f2; }
+.lavender { fill:#b7e7f3; } .empty { fill:#183748; } }
 </style><rect class="bg" x="1" y="1" width="528" height="278" rx="16"/>
 <text x="28" y="39" font-size="20" class="title" text-anchor="start">Top Languages</text><text x="28" y="65" font-size="12" class="label" text-anchor="start">Code bytes · owned public non-fork repos</text><text x="28" y="91" font-size="13" class="label" text-anchor="start">TypeScript</text><text x="500" y="91" font-size="13" class="label" text-anchor="end">95.9%</text><rect class="empty" x="28" y="96" width="472" height="4" rx="2"/><rect class="rose" x="28" y="96" width="452.53" height="4" rx="2"/><text x="28" y="116" font-size="13" class="label" text-anchor="start">Python</text><text x="500" y="116" font-size="13" class="label" text-anchor="end">2.5%</text><rect class="empty" x="28" y="121" width="472" height="4" rx="2"/><rect class="lavender" x="28" y="121" width="11.88" height="4" rx="2"/><text x="28" y="141" font-size="13" class="label" text-anchor="start">JavaScript</text><text x="500" y="141" font-size="13" class="label" text-anchor="end">1.1%</text><rect class="empty" x="28" y="146" width="472" height="4" rx="2"/><rect class="rose" x="28" y="146" width="5.11" height="4" rx="2"/><text x="28" y="166" font-size="13" class="label" text-anchor="start">CSS</text><text x="500" y="166" font-size="13" class="label" text-anchor="end">0.4%</text><rect class="empty" x="28" y="171" width="472" height="4" rx="2"/><rect class="lavender" x="28" y="171" width="2.11" height="4" rx="2"/><text x="28" y="191" font-size="13" class="label" text-anchor="start">Shell</text><text x="500" y="191" font-size="13" class="label" text-anchor="end">&lt;0.1%</text><rect class="empty" x="28" y="196" width="472" height="4" rx="2"/><rect class="rose" x="28" y="196" width="0.22" height="4" rx="2"/><text x="28" y="216" font-size="13" class="label" text-anchor="start">HTML</text><text x="500" y="216" font-size="13" class="label" text-anchor="end">&lt;0.1%</text><rect class="empty" x="28" y="221" width="472" height="4" rx="2"/><rect class="lavender" x="28" y="221" width="0.07" height="4" rx="2"/><text x="28" y="257" font-size="12" class="label" text-anchor="start">Share of all detected bytes; top 6 shown</text></svg>
