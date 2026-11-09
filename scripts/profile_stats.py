@@ -70,13 +70,13 @@ def card(title, body, width=530, height=280):
  viewBox="0 0 {width} {height}" role="img" aria-label="{escape(title)}">
 <title>{escape(title)}</title><style>
 svg {{ font-family: DejaVu Sans,Segoe UI,Arial,sans-serif; }}
-.bg {{ fill:#fff; stroke:#c3dce8; }} .label {{ fill:#38596b; }}
-.title {{ fill:#205b78; font-weight:600; }} .value {{ fill:#205b78; font-weight:600; }}
-.rose {{ fill:#126b8c; }} .lavender {{ fill:#39758d; }} .empty {{ fill:#e6f1f6; }}
+.bg {{ fill:#fff; stroke:#e5cbd0; }} .label {{ fill:#65434b; }}
+.title {{ fill:#813d4b; font-weight:600; }} .value {{ fill:#813d4b; font-weight:600; }}
+.rose {{ fill:#a13e51; }} .lavender {{ fill:#965564; }} .empty {{ fill:#f3e7ea; }}
 @media(prefers-color-scheme:dark) {{
-.bg {{ fill:#0c1e2b; stroke:#294e64; }} .label {{ fill:#b8d4e3; }}
-.title,.value {{ fill:#b7edff; }} .rose {{ fill:#83d9f2; }}
-.lavender {{ fill:#b7e7f3; }} .empty {{ fill:#183748; }} }}
+.bg {{ fill:#1b1016; stroke:#54303b; }} .label {{ fill:#d6bac3; }}
+.title,.value {{ fill:#edb4bd; }} .rose {{ fill:#d46a78; }}
+.lavender {{ fill:#e7a4ad; }} .empty {{ fill:#35202a; }} }}
 </style><rect class="bg" x="1" y="1" width="{width-2}" height="{height-2}" rx="16"/>
 {text(28, 39, title, 20, 'title')}{body}</svg>'''
 
