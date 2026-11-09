@@ -12,7 +12,10 @@
 <samp>「 Building AI model gateways, command-line tools, and automation 」</samp>
 </p>
 
-<!-- github-stats -->
+<p align="center">
+<img src="./.github/assets/stats.svg" width="48%" alt="GitHub Stats" />
+<img src="./.github/assets/top-langs.svg" width="48%" alt="Most Used Languages" />
+</p>
 
 <p align="center">
 <img src="./icons/footer.svg" width="100%" alt="Footer wave" />

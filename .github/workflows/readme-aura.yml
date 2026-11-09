@@ -24,7 +24,7 @@ jobs:
   generate:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout latest source
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
@@ -32,12 +32,30 @@ jobs:
           ref: main
           fetch-depth: 0
 
-      - name: Verify fail-closed guards and source layout
+      - name: Verify source layout and publication guards
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
 
-      - name: Generate and validate cards with live public data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate standard stats card
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: stats
+          options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&show_icons=true
+          path: .github/assets/stats.svg
+          core_version: '2.3.0'
+          fail_on_error: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate standard top-langs card
+        uses: stats-organization/github-readme-stats-action@2c498845f71017821efaad14293ebc736156ef21 # v2
+        with:
+          card: top-langs
+          options: username=rrddngtnn&bg_color=091722&title_color=83d9f2&text_color=e3faff&icon_color=b7e7f3&border_color=1b4358&layout=compact&langs_count=6
+          path: .github/assets/top-langs.svg
+          core_version: '2.3.0'
+          fail_on_error: 'true'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate cards and publish source
         run: python3 scripts/generate_readme.py
 
       - name: Commit generated output only
@@ -49,6 +67,6 @@ jobs:
             printf 'Cards are already up to date.\n'
             exit 0
           fi
-          git commit -m 'chore(readme): refresh live public GitHub stats and cards'
+          git commit -m 'chore(readme): refresh standard GitHub Readme Stats cards'
           git pull --rebase origin main
           git push origin HEAD:main

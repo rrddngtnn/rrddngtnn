@@ -4,4 +4,8 @@ Visual arrangement reference: [HiradEmami/HiradEmami](https://github.com/HiradEm
 
 [Devicon](https://github.com/devicons/devicon) icons are used under MIT, pinned at `32fe1d3b3f36ad11f90ab94f7db59738139c2bf6`, recolored to the profile palette. Full notice: [licenses/devicon-MIT.txt](licenses/devicon-MIT.txt). Tool logos remain their owners' trademarks; no endorsement is implied. Two TypeScript variants are not displayed twice.
 
-Live-stat cards are generated using [readme-aura](https://github.com/collectioneur/readme-aura) 1.0.20. Shields badges are served by [Shields.io](https://shields.io/). Reference readme-ux-kit divider source was inspected for licensing (MIT), but no kit source was copied; dividers are original implementations.
+Statistics use the standard [GitHub Readme Stats Action](https://github.com/stats-organization/github-readme-stats-action) v2, pinned at `2c498845f71017821efaad14293ebc736156ef21`, with maintained upstream core `2.3.0` (MIT). The original GitHub Readme Stats repository now directs users to this maintained action. Only color options match the ice palette; layouts and metrics are upstream defaults, with `show_icons=true` and `layout=compact&langs_count=6`.
+
+The public `github-readme-stats.vercel.app` stats and top-languages endpoints returned HTTP 503 `DEPLOYMENT_PAUSED` during setup. Instead, authenticated GitHub Actions generates the same conventional card types as static SVGs, not a hand-designed fallback. `GITHUB_TOKEN` supplies public statistics; private data is not requested. The default commit metric is year-to-date, not lifetime commits. Language percentages describe upstream repository code-byte usage, not personal skill or contributions to others' repositories; upstream repository/query limits apply. API errors fail the job before publication.
+
+Retained, unused decorative assets remain for reversible prior section removals. They are not shown in the current README.

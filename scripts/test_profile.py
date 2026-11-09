@@ -1,47 +1,44 @@
-"""Publication is all-or-nothing on API failures; CI alone owns generated files."""
-import os
+"""Keep the conventional upstream cards and fail closed before publication."""
+import importlib.util
 from pathlib import Path
-import subprocess
-import sys
 import tempfile
 import unittest
+
+spec = importlib.util.spec_from_file_location('publisher', 'scripts/generate_readme.py')
+assert spec is not None and spec.loader is not None
+publisher = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(publisher)
 
 
 class ProfileTests(unittest.TestCase):
     def test_source_layout(self):
         source = Path('README.source.md').read_text()
-        self.assertIn('header.svg', source)
+        self.assertLess(source.index('header.svg'), source.index('stats.svg'))
+        self.assertLess(source.index('stats.svg'), source.index('top-langs.svg'))
+        self.assertLess(source.index('top-langs.svg'), source.index('footer.svg'))
         self.assertIn('Raymond REDdington', source)
-        self.assertIn('<!-- github-stats -->', source)
-        for removed in ['control.svg', 'Collaboration', '```aura', 'streak']:
+        for removed in ['github-stats -->', 'activity-', 'streak', '```aura']:
             self.assertNotIn(removed, source)
 
-    def test_api_failure_preserves_outputs(self):
-        script = Path('scripts/generate_readme.py').resolve()
-        with tempfile.TemporaryDirectory(dir=os.environ.get('TMPDIR')) as folder:
+    def test_invalid_cards_preserve_published_readme(self):
+        with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
-            (root/'README.source.md').write_text('<!-- github-stats -->')
-            (root/'README.md').write_text('existing published output')
-            (root/'profile_stats.py').write_text('def fetch():\n raise ValueError("GitHub API unavailable")\n')
-            # PYTHONPATH cannot shadow script-directory imports: inject failure through runpy.
-            code = ('import sys,runpy; sys.path.insert(0, sys.argv[1]); '
-                    'script=sys.argv[2]; sys.argv=[script]; '
-                    'runpy.run_path(script,run_name="__main__")')
-            env = dict(os.environ, GITHUB_TOKEN='unit-test-only')
-            result = subprocess.run([sys.executable, '-c', code, folder, str(script)],
-                                    cwd=folder, env=env, capture_output=True, text=True)
-            self.assertNotEqual(result.returncode, 0)
-            self.assertIn('GitHub API unavailable', result.stderr)
-            self.assertEqual((root/'README.md').read_text(), 'existing published output')
-            self.assertFalse((root/'.github/assets').exists())
+            (root/'README.md').write_text('published')
+            (root/'README.source.md').write_text('new source')
+            (root/'.github/assets').mkdir(parents=True)
+            for svg in ['', '<svg xmlns="http://www.w3.org/2000/svg"><text>Something went wrong</text></svg>', '<html>unavailable</html>']:
+                (root/'.github/assets/stats.svg').write_text(svg)
+                with self.assertRaises((ValueError, publisher.ET.ParseError)):
+                    publisher.publish(root)
+                self.assertEqual((root/'README.md').read_text(), 'published')
 
-    def test_missing_credentials_fail_closed(self):
-        env = dict(os.environ)
-        env.pop('GITHUB_TOKEN', None)
-        result = subprocess.run([sys.executable, 'scripts/generate_readme.py'],
-                                env=env, capture_output=True, text=True)
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn('refusing mock-data', result.stderr)
+    def test_workflow_uses_official_fail_closed_action(self):
+        workflow = Path('.github/workflows/readme-aura.yml').read_text()
+        self.assertEqual(workflow.count('uses: stats-organization/github-readme-stats-action@'), 2)
+        self.assertEqual(workflow.count("fail_on_error: 'true'"), 2)
+        self.assertIn('layout=compact', workflow)
+        self.assertIn('username=rrddngtnn', workflow)
+        self.assertNotIn('profile_stats', workflow)
 
 
 if __name__ == '__main__':
